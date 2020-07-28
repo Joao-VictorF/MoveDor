@@ -109,7 +109,7 @@ class _CapPageState extends State<CapPage> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
                       IconButton(
-                        icon: Icon(Icons.arrow_back_ios, color: appState.isDarkMode ? Colors.white70 : Colors.black54, size: 35,),
+                        icon: Icon(Icons.arrow_back, color: appState.isDarkMode ? Colors.white70 : Colors.black54),
                         onPressed: () => Navigator.of(context).pop(),
                       ),
                     ],
@@ -162,10 +162,22 @@ class _CapPageState extends State<CapPage> {
                                       : 
                                       print("");
 
+                                      SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+                                      SystemChrome.setPreferredOrientations([
+                                        DeviceOrientation.portraitUp,
+                                      ]);
+
+                                      await _controller.pause();
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(builder: (context) => CapsPage()),
                                       );
+
+                                      // _con.dispose();
+                                      // super.dispose();
+                                      
+                                      
                                     },
                                     color: Colors.green[300],
                                     elevation: 10,
@@ -227,7 +239,7 @@ class _CapPageState extends State<CapPage> {
                           ),
                          
                           RichText(
-                            textAlign: TextAlign.left,
+                            textAlign: TextAlign.center,
                             text: 
                             new TextSpan(
                               style: TextStyle(
@@ -250,7 +262,7 @@ class _CapPageState extends State<CapPage> {
                           ),
 
                           RichText(
-                            textAlign: TextAlign.left,
+                            textAlign: TextAlign.center,
                             text: 
                             new TextSpan(
                               style: TextStyle(
@@ -279,7 +291,7 @@ class _CapPageState extends State<CapPage> {
                               style: TextStyle(
                                 fontFamily: 'MontserratRegular',
                                 color: Color(0xFF36a9b0),
-                                fontSize: 35,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold
                               ),
                               children: <TextSpan>[
@@ -295,7 +307,7 @@ class _CapPageState extends State<CapPage> {
                               style: TextStyle(
                                 fontFamily: 'MontserratRegular',
                                 color: appState.isDarkMode ? Colors.white70 : Colors.black87,
-                                fontSize: 35,
+                                fontSize: 30,
                                 fontWeight: FontWeight.bold
                               ),
                               children: <TextSpan>[

@@ -1,5 +1,7 @@
 import 'package:fisio_app/app/modules/book/cap_page.dart';
 import 'package:fisio_app/app/modules/book/responderQuiz.dart';
+import 'package:fisio_app/app/modules/home/menu_page.dart';
+import 'package:fisio_app/app/modules/infografico/infografico_page.dart';
 import 'package:fisio_app/custom_icons_icons.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_mobx/flutter_mobx.dart';
@@ -86,34 +88,46 @@ class _CapsPageState extends State<CapsPage> {
     final appState = Provider.of<AppController>(context);
     
     return 
-    Scaffold(
-      body: 
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          
-          child: Observer(
-            builder: (_) {
-              return
+    Observer(
+      builder: (_) {
+      return
+      Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: appState.isDarkMode ? Colors.black87 : Colors.white,
+          leading: IconButton(
+            tooltip: 'Menu',
+            icon: Icon(Icons.arrow_back, color: appState.isDarkMode ? Colors.white : Colors.black54),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => MenuPage()),
+              );
+            },
+          ),
+        ),
+        body: 
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height,
+            
+            child:
               isLoading ?
               Center(
                 child: CircularProgressIndicator(
-
                 ),
               )
               :
               Container (
-                margin: EdgeInsets.only(top: 20),
                 color: appState.isDarkMode ? Colors.black87 : Colors.white70,
                 child: 
                 ListView(
                   padding: const EdgeInsets.all(20),
                   children: getCaps(context),
                 )
-              );
-            }
-          )
-        ),
+              )
+              
+          ),
         floatingActionButton: 
           Observer(
             builder: (_) {
@@ -330,6 +344,9 @@ class _CapsPageState extends State<CapsPage> {
           ),
         floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
         floatingActionButtonAnimator: FloatingActionButtonAnimator.scaling,
+      );
+    
+      }
     );
   }
   
@@ -392,6 +409,16 @@ class _CapsPageState extends State<CapsPage> {
                   MaterialPageRoute(builder: (context) => ResponderQuiz()),
                 )
               :
+              capitulos.indexOf(cap) == 5 ?
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => InfograficoPage()),
+                )
+              :  
+                // Navigator.pushAndRemoveUntil(
+                //   MaterialPageRoute(builder: (BuildContext context) => CapPage(cap: capitulos.indexOf(cap))),
+                //   ModalRoute.withName('/'),
+                // );
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => CapPage(cap: capitulos.indexOf(cap))),

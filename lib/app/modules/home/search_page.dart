@@ -1,10 +1,12 @@
 import 'package:fisio_app/app/app_controller.dart';
+import 'package:fisio_app/app/modules/about/terms_of_use.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:rich_alert/rich_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter/gestures.dart';
 
 class SearchPage extends StatefulWidget {
   SearchPage({Key key}) : super(key: key);
@@ -15,6 +17,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   ScrollController _scrollController = new ScrollController();
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
   
   int currentFormIndex = 0;
 
@@ -118,17 +121,20 @@ class _SearchPageState extends State<SearchPage> {
   //--------//
 
   Future<void> _setAnsweredSearchTrue() async {
-    final prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;
     final appState = Provider.of<AppController>(context, listen: false);
 
     appState.changeSearch(true);
-    await prefs.setBool('answeredSearch', true);
+    prefs.setBool('answeredSearch', true);
 
-    await prefs.setBool('cap2', false);
-    await prefs.setBool('cap3', false);
-    await prefs.setBool('cap4', false);
-    await prefs.setBool('cap5', false);
-    await prefs.setBool('cap6', false);
+    prefs.setBool('cap1', false);
+    prefs.setBool('cap2', false);
+    prefs.setBool('cap3', false);
+    prefs.setBool('cap4', false);
+    prefs.setBool('cap5', false);
+
+    print(prefs.getBool("cap3"));
+    print(prefs.getBool("cap5"));
   }
 
   @override
@@ -188,6 +194,39 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                   ),
                 ),
 
+                Container (
+                  margin: EdgeInsets.only(bottom: 40),
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  child: 
+                  RichText(
+                    textAlign: TextAlign.center,
+                    text: new TextSpan(
+                      style: TextStyle(
+                        fontFamily: 'MontserratRegular',
+                        color: appState.isDarkMode ? Colors.white70 : Colors.black54,
+                        fontSize: 24
+                      ),
+                      children: <TextSpan>[
+                        new TextSpan(text: 'Ao clicar em avançar, você concorda com os nossos '),
+                        new TextSpan(text: ' termos de uso', style: TextStyle(color: Colors.blue),
+                        recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Terms()),
+                          );
+                        }),
+                        new TextSpan(text: ' e nos autoriza a utilizar as informações aqui coletadas para '),
+                        new TextSpan(text: 'FINS DE PESQUISA CIENTÍFICA.',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        )),
+                      ],
+                    ),
+                  ),
+                ),
+                
+
                 Center(
                   child: 
                   RaisedButton(
@@ -228,6 +267,7 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                     ),
                   ),
                 ),
+                
               ]
 
             ),
@@ -676,7 +716,7 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                         return new 
                         CheckboxListTile(
                           controlAffinity: ListTileControlAffinity.leading,
-                          activeColor: Color.fromRGBO(111, 146, 99, 1),
+                          activeColor: Color(0xFF36a9b0),
                           title: 
                           new Text(key, 
                             style: TextStyle(
@@ -744,7 +784,7 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                         return new 
                         CheckboxListTile(
                           controlAffinity: ListTileControlAffinity.leading,
-                          activeColor: Color.fromRGBO(111, 146, 99, 1),
+                          activeColor: Color(0xFF36a9b0),
                           title: 
                           new Text(key, 
                             style: TextStyle(
@@ -889,7 +929,7 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                       return new 
                       CheckboxListTile(
                         controlAffinity: ListTileControlAffinity.leading,
-                        activeColor: Color.fromRGBO(111, 146, 99, 1),
+                        activeColor: Color(0xFF36a9b0),
                         title: 
                         new Text(key, 
                           style: TextStyle(
@@ -1072,7 +1112,7 @@ Antes de iniciarmos, gostaríamos de fazer algumas perguntas para que possamos t
                       return new 
                       CheckboxListTile(
                         controlAffinity: ListTileControlAffinity.leading,
-                        activeColor: Color.fromRGBO(111, 146, 99, 1),
+                        activeColor: Color(0xFF36a9b0),
                         title: 
                         new Text(
                           key, 

@@ -1,5 +1,7 @@
 import 'package:fisio_app/app/app_controller.dart';
+import 'package:fisio_app/app/modules/about/about_page.dart';
 import 'package:fisio_app/app/modules/book/caps_page.dart';
+import 'package:fisio_app/app/modules/diary/diary_page.dart';
 import 'package:fisio_app/app/modules/infografico/infografico_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -28,23 +30,26 @@ class _MenuPageState extends State<MenuPage> {
   getReadCaps() async {
     final SharedPreferences prefs = await _prefs;
 
-    canAccessDiary = prefs.getBool('cap3');
-    canAccessInfo = prefs.getBool('cap6');
+    setState(() { 
+      canAccessDiary = prefs.getBool('cap3');
+      canAccessInfo = prefs.getBool('cap5');
+    });
   }
 
   Widget build(BuildContext context) {
     final appState = Provider.of<AppController>(context);
     
-    return Container(
-      child:       
-       Observer(
-        builder: (_) {
-          return 
+    return       
+    Observer(
+      builder: (_) {
+        return 
+        Scaffold (
+          backgroundColor: appState.isDarkMode ? Colors.black87 : Colors.white,
+          body:
           Container (
-            color: appState.isDarkMode ? Colors.black87 : Colors.white70,
             height: MediaQuery.of(context).size.height,
             child:
-             Column(
+              Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
@@ -100,7 +105,10 @@ class _MenuPageState extends State<MenuPage> {
                   RaisedButton(
                     onPressed: () {
                       if(canAccessDiary) {
-                        print('a');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => DiaryPage()),
+                        );
                       } else {
                         showDialog(
                           context: context,
@@ -261,6 +269,10 @@ class _MenuPageState extends State<MenuPage> {
                   child: 
                   RaisedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => About()),
+                      );
                     },
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
                     padding: EdgeInsets.all(0.0),
@@ -292,9 +304,10 @@ class _MenuPageState extends State<MenuPage> {
               ]
 
             ),
-          );
-        }
-      ),
+          ),
+      
+        );
+      }
     );
   }
 }

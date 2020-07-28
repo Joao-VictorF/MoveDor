@@ -26,12 +26,15 @@ abstract class _AppBase with Store {
 
   @action
   void increaseFontSize() {
-    fontSize++;
+    if(fontSize < 30) {
+      fontSize++;
+    }
   }
-  
 
   @action
   void decreaseFontSize() {
-    fontSize--;
+    if(fontSize > 15) {
+      fontSize--;
+    }
   }
 }

@@ -13,5 +13,5 @@ class AboutModule extends ModuleWidget {
 
   @override
   // TODO: implement view
-  Widget get view => AboutPage();
+  Widget get view => About();
 }

@@ -1,3 +1,4 @@
+import 'package:fisio_app/app/modules/book/caps_page.dart';
 import 'package:flutter/material.dart';
 import 'package:page_slider/page_slider.dart';
 import 'package:provider/provider.dart';
@@ -31,8 +32,6 @@ class ResponderQuizState extends State<ResponderQuiz> {
   List<Widget> questoes = [];
   List<Map> answersControllers = [];
 
-  double resultPoints = 0;
-  
   GlobalKey<PageSliderState> _slider = GlobalKey();
 
   createQuestions(BuildContext ctx) {
@@ -340,53 +339,15 @@ class ResponderQuizState extends State<ResponderQuiz> {
                               new RaisedButton(
                                 child: new Text("Sim", style: TextStyle(color: Colors.white)),
                                 color: Colors.green[400],
-                                onPressed: () {
-                                  if(checkAnswersControllers()) {
-                                    showDialog(
-                                      context: context,
-                                      builder: (BuildContext context) {
-                                        return
-                                          RichAlertDialog( 
-                                            alertTitle: richTitle(
-                                              Text(
-                                                "Calma!",
-                                                textAlign: TextAlign.center,
-                                                  style: TextStyle (
-                                                    fontSize: 24,
-                                                    color: Colors.black87
-                                                  ),
-                                              )
-                                            ),
-                                            alertSubtitle: richSubtitle(
-                                              Text(
-                                                'Responda todas as perguntas',
-                                                textAlign: TextAlign.center,
-                                                  style: TextStyle (
-                                                    color: Colors.black54
-                                                  ),
-                                                )
-                                              ),
-                                            alertType: RichAlertType.WARNING,
-                                            dialogIcon: Icon(
-                                              Icons.assignment_late,
-                                              size: 60,
-                                              color: Colors.blueGrey,
-                                            ), 
-                                            actions: <Widget>[
-                                              RaisedButton(
-                                                child: Text("OK", style: TextStyle(color: Colors.white),),
-                                                color: Colors.green[300],
-                                                onPressed: (){Navigator.pop(context);},
-                                              ),
-                                            ],
-                                          );
-                                      }
-                                    );
-                                  } else {
-                                    setState(() {
-                                      complete = true;
-                                    });
-                                  }
+                                onPressed: () async {
+                                  final SharedPreferences prefs = await _prefs;
+                                  prefs.setBool("cap5", true);
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => CapsPage()),
+                                  );
+
                                 },
                               ),
                             ],
@@ -468,15 +429,15 @@ class ResponderQuizState extends State<ResponderQuiz> {
                               ),
                             color: Colors.green[400],
                             onPressed: () {
-                              if(checkAnswersControllers()) {
-                                setState(() {
-                                  hasUnansweredQuestions = true;
-                                });
-                              } else {
+                              // if(checkAnswersControllers()) {
+                              //   setState(() {
+                              //     hasUnansweredQuestions = true;
+                              //   });
+                              // } else {
                                 setState(() {
                                   complete = true;
                                 }); 
-                              }
+                              // }
                             },
                             padding: const EdgeInsets.all(20.0),
                             shape: RoundedRectangleBorder(
@@ -497,7 +458,7 @@ class ResponderQuizState extends State<ResponderQuiz> {
                               });
                             }
 
-                            if(currentStep == 5) {
+                            if(currentStep == 7) {
                               setState(() {
                                 lastPage = true;
                               });

@@ -5,7 +5,7 @@ import 'package:fisio_app/app/modules/about/about_page.dart';
 
 main() {
   testWidgets('AboutPage has title', (WidgetTester tester) async {
-    await tester.pumpWidget(buildTestableWidget(AboutPage(title: 'Calls')));
+    await tester.pumpWidget(buildTestableWidget(About()));
     final titleFinder = find.text('Calls');
     expect(titleFinder, findsOneWidget);
   });
