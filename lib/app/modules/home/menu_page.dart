@@ -3,6 +3,7 @@ import 'package:fisio_app/app/modules/about/about_page.dart';
 import 'package:fisio_app/app/modules/book/caps_page.dart';
 import 'package:fisio_app/app/modules/diary/diary_page.dart';
 import 'package:fisio_app/app/modules/infografico/infografico_page.dart';
+import 'package:fisio_app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -23,6 +24,7 @@ class _MenuPageState extends State<MenuPage> {
   void initState() { 
     super.initState();
     getReadCaps();
+    _configureSelectNotificationSubject();
   }
   bool canAccessDiary = false;
   bool canAccessInfo = false;
@@ -36,6 +38,23 @@ class _MenuPageState extends State<MenuPage> {
     });
   }
 
+    void _configureSelectNotificationSubject() {
+    selectNotificationSubject.stream.listen((String payload) async {
+      print("ok");
+      final SharedPreferences prefs = await _prefs;
+      var hasAnsweredDiary = prefs.getBool('hasAnsweredDiary') ?? false;
+      if(payload == 'confirmation') {
+        print('nothing');
+      } else if (payload == 'diario'){
+        print('abrindo diario');
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => DiaryPage()),
+        );
+      }
+    });
+  }
+  
   Widget build(BuildContext context) {
     final appState = Provider.of<AppController>(context);
     
@@ -51,11 +70,11 @@ class _MenuPageState extends State<MenuPage> {
             child:
               Column(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 
                 Container (
-                  margin: EdgeInsets.only(bottom: 40),
+                  margin: EdgeInsets.only(bottom: 15),
                   width: MediaQuery.of(context).size.width * 0.5,
                   child: 
                   Image(
@@ -63,112 +82,32 @@ class _MenuPageState extends State<MenuPage> {
                   ),
                 ),
 
-                Center(
-                  child: 
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => CapsPage()),
-                      );
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Livreto",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'MontserratRegular',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-
-                Center(
-                  child: 
-                  RaisedButton(
-                    onPressed: () {
-                      if(canAccessDiary) {
+                Container(
+                  margin: EdgeInsets.only(bottom: 15),
+                  child: Center(
+                    child: 
+                    RaisedButton(
+                      onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => DiaryPage()),
+                          MaterialPageRoute(builder: (context) => CapsPage()),
                         );
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return
-                              RichAlertDialog( 
-                                alertTitle: richTitle(
-                                  Text(
-                                    "Calma!",
-                                    textAlign: TextAlign.center,
-                                      style: TextStyle (
-                                        fontSize: 24,
-                                        color: Colors.black87
-                                      ),
-                                  )
-                                ),
-                                alertSubtitle: richSubtitle(
-                                  Text(
-                                    'Você poderá acessar essa funcionalidade depois de ler o 3° capítulo do livreto!',
-                                    textAlign: TextAlign.center,
-                                      style: TextStyle (
-                                        fontSize: 18,
-                                        color: Colors.black54
-                                      ),
-                                    )
-                                  ),
-                                alertType: RichAlertType.WARNING,
-                                dialogIcon: Icon(
-                                  Icons.assignment_late,
-                                  size: 60,
-                                  color: Colors.blueGrey,
-                                ), 
-                                actions: <Widget>[
-                                  RaisedButton(
-                                    child: Text("OK", style: TextStyle(color: Colors.white),),
-                                    color: Colors.green[300],
-                                    onPressed: (){Navigator.pop(context);},
-                                  ),
-                                ],
-                              );
-                          }
-                        );
-                      }
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)
                         ),
-                        borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      child: 
-                        Container(
+                        child: Container(
                           constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                           alignment: Alignment.center,
                           child: Text(
-                            "Diário de Exercícios",
+                            "Livreto",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'MontserratRegular',
@@ -177,81 +116,209 @@ class _MenuPageState extends State<MenuPage> {
                               color: Colors.white
                             ),
                           ),
-                        )
+                        ),
+                      ),
                     ),
                   ),
                 ),
 
-                Center(
-                  child: 
-                  RaisedButton(
-                    onPressed: () {
-                      if(canAccessInfo) {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => InfograficoPage()),
-                        );
-                      } else {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return
-                              RichAlertDialog( 
-                                alertTitle: richTitle(
-                                  Text(
-                                    "Calma!",
-                                    textAlign: TextAlign.center,
-                                      style: TextStyle (
-                                        fontSize: 24,
-                                        color: Colors.black87
-                                      ),
-                                  )
-                                ),
-                                alertSubtitle: richSubtitle(
-                                  Text(
-                                    'Você poderá acessar essa funcionalidade depois de ler o 5° capítulo do livreto!',
-                                    textAlign: TextAlign.center,
-                                      style: TextStyle (
-                                        fontSize: 18,
-                                        color: Colors.black54
-                                      ),
+                Container(
+                  margin: EdgeInsets.only(bottom: 15),
+                  child: Center(
+                    child: 
+                    RaisedButton(
+                      onPressed: () {
+                        if(canAccessDiary) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => DiaryPage()),
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return
+                                RichAlertDialog( 
+                                  alertTitle: richTitle(
+                                    Text(
+                                      "Calma!",
+                                      textAlign: TextAlign.center,
+                                        style: TextStyle (
+                                          fontSize: 24,
+                                          color: Colors.black87
+                                        ),
                                     )
                                   ),
-                                alertType: RichAlertType.WARNING,
-                                dialogIcon: Icon(
-                                  Icons.assignment_late,
-                                  size: 60,
-                                  color: Colors.blueGrey,
-                                ), 
-                                actions: <Widget>[
-                                  RaisedButton(
-                                    child: Text("OK", style: TextStyle(color: Colors.white),),
-                                    color: Colors.green[300],
-                                    onPressed: (){Navigator.pop(context);},
-                                  ),
-                                ],
-                              );
-                          }
-                        );
-                      }
-                      
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                                  alertSubtitle: richSubtitle(
+                                    Text(
+                                      'Você poderá acessar essa funcionalidade depois de ler o 3° capítulo do livreto!',
+                                      textAlign: TextAlign.center,
+                                        style: TextStyle (
+                                          fontSize: 18,
+                                          color: Colors.black54
+                                        ),
+                                      )
+                                    ),
+                                  alertType: RichAlertType.WARNING,
+                                  dialogIcon: Icon(
+                                    Icons.assignment_late,
+                                    size: 60,
+                                    color: Colors.blueGrey,
+                                  ), 
+                                  actions: <Widget>[
+                                    RaisedButton(
+                                      child: Text("OK", style: TextStyle(color: Colors.white),),
+                                      color: Colors.green[300],
+                                      onPressed: (){Navigator.pop(context);},
+                                    ),
+                                  ],
+                                );
+                            }
+                          );
+                        }
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)
                         ),
-                        borderRadius: BorderRadius.circular(10.0)
+                        child: 
+                          Container(
+                            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Diário de Exercícios",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'MontserratRegular',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white
+                              ),
+                            ),
+                          )
                       ),
-                      child: 
-                        Container(
+                    ),
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(bottom: 15),
+                  child: Center(
+                    child: 
+                    RaisedButton(
+                      onPressed: () {
+                        if(canAccessInfo) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => InfograficoPage()),
+                          );
+                        } else {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return
+                                RichAlertDialog( 
+                                  alertTitle: richTitle(
+                                    Text(
+                                      "Calma!",
+                                      textAlign: TextAlign.center,
+                                        style: TextStyle (
+                                          fontSize: 24,
+                                          color: Colors.black87
+                                        ),
+                                    )
+                                  ),
+                                  alertSubtitle: richSubtitle(
+                                    Text(
+                                      'Você poderá acessar essa funcionalidade depois de ler o 5° capítulo do livreto!',
+                                      textAlign: TextAlign.center,
+                                        style: TextStyle (
+                                          fontSize: 18,
+                                          color: Colors.black54
+                                        ),
+                                      )
+                                    ),
+                                  alertType: RichAlertType.WARNING,
+                                  dialogIcon: Icon(
+                                    Icons.assignment_late,
+                                    size: 60,
+                                    color: Colors.blueGrey,
+                                  ), 
+                                  actions: <Widget>[
+                                    RaisedButton(
+                                      child: Text("OK", style: TextStyle(color: Colors.white),),
+                                      color: Colors.green[300],
+                                      onPressed: (){Navigator.pop(context);},
+                                    ),
+                                  ],
+                                );
+                            }
+                          );
+                        }
+                        
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        child: 
+                          Container(
+                            constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Infográfico",
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'MontserratRegular',
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white
+                              ),
+                            ),
+                          )
+                      ),
+                    ),
+                  ),
+                ),
+
+                Container(
+                  margin: EdgeInsets.only(bottom: 15),
+                  child: Center(
+                    child: 
+                    RaisedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => About()),
+                        );
+                      },
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+                      padding: EdgeInsets.all(0.0),
+                      child: Ink(
+                        decoration: BoxDecoration(
+                            gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
+                            begin: Alignment.centerLeft,
+                            end: Alignment.centerRight,
+                          ),
+                          borderRadius: BorderRadius.circular(10.0)
+                        ),
+                        child: Container(
                           constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                           alignment: Alignment.center,
                           child: Text(
-                            "Infográfico",
+                            "Sobre",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontFamily: 'MontserratRegular',
@@ -259,42 +326,6 @@ class _MenuPageState extends State<MenuPage> {
                               fontWeight: FontWeight.bold,
                               color: Colors.white
                             ),
-                          ),
-                        )
-                    ),
-                  ),
-                ),
-
-                Center(
-                  child: 
-                  RaisedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => About()),
-                      );
-                    },
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    padding: EdgeInsets.all(0.0),
-                    child: Ink(
-                      decoration: BoxDecoration(
-                          gradient: LinearGradient(colors: [Color(0xff36a9b0), Color(0xffa9d6c2)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        ),
-                        borderRadius: BorderRadius.circular(10.0)
-                      ),
-                      child: Container(
-                        constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Sobre",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'MontserratRegular',
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white
                           ),
                         ),
                       ),

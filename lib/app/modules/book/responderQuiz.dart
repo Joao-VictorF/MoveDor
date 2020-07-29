@@ -205,7 +205,7 @@ class ResponderQuizState extends State<ResponderQuiz> {
         index: 6,
         answerController: answersControllers[4],
         questao: {
-          'enunciado': '. O ideal é iniciar por atividades físicas com movimentos mais complexos e depois realizar as mais simples?',
+          'enunciado': 'O ideal é iniciar por atividades físicas com movimentos mais complexos e depois realizar as mais simples?',
           'correct': 0,
           'its_true': false,
           'check_yes': false,
@@ -236,7 +236,7 @@ class ResponderQuizState extends State<ResponderQuiz> {
           'its_true': false,
           'check_yes': false,
           'check_no': false,
-          'msg': ': Exercícios que lhe ajudam a relaxar o corpo e a mente são ótimos aliados no alívio da dor! Exercícios de respiração, técnicas de relaxamento e meditação são opções que podem fazer parte do seu dia a dia.',
+          'msg': 'Exercícios que lhe ajudam a relaxar o corpo e a mente são ótimos aliados no alívio da dor! Exercícios de respiração, técnicas de relaxamento e meditação são opções que podem fazer parte do seu dia a dia.',
         },
         onValueChange: _onValueChange,
       )
@@ -623,7 +623,7 @@ class QuestaoState extends State<Questao> {
                         ),
                         Text(
                           "\n${questao['msg']}\n",
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Colors.green,
                             fontSize: 18
@@ -640,7 +640,7 @@ class QuestaoState extends State<Questao> {
                           'Na verdade, a resposta correta é Sim!'
                           :
                           'Na verdade a resposta correta é Não!',
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.justify,
                           style: TextStyle(
                             color: Colors.red[300],
                             fontSize: 18
@@ -648,7 +648,7 @@ class QuestaoState extends State<Questao> {
                         ),
                         Text(
                           "\n${questao['msg']}\n",
-                          textAlign: TextAlign.center,
+                          textAlign: TextAlign.left,
                           style: TextStyle(
                             color: Colors.green,
                             fontSize: 18

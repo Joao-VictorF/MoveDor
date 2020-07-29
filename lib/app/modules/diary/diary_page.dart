@@ -1,11 +1,14 @@
 import 'package:fisio_app/app/app_controller.dart';
-import 'package:fisio_app/app/modules/home/menu_page.dart';
+import 'package:fisio_app/main.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:provider/provider.dart';
 import 'package:fisio_app/custom_icons_icons.dart';
 import 'package:rich_alert/rich_alert.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DiaryPage extends StatefulWidget {
   DiaryPage({Key key}) : super(key: key);
@@ -15,6 +18,8 @@ class DiaryPage extends StatefulWidget {
 }
 
 class _DiaryPageState extends State<DiaryPage> {
+  Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+  
   bool hasSelectedActivites = false;
   bool hasSelectedActivitesTime = false;
   bool hasSelectedActivitesDays = false;
@@ -79,6 +84,122 @@ class _DiaryPageState extends State<DiaryPage> {
       'Sábado': false,
     }
   ];
+
+  verifyNotifications() async {
+    var pendingNotificationRequests = await _checkPendingNotificationRequests();
+
+    if(pendingNotificationRequests.length > 0) {
+      await _cancelAllNotifications();
+      await _showRememberNotification();
+      // await _showConfirmationNotification();
+      Navigator.of(context).pop();
+    } else {
+      await _showRememberNotification();
+      // await _showConfirmationNotification();
+      Navigator.of(context).pop();
+    }
+  }
+  Future<void> _showConfirmationNotification() async {
+    final SharedPreferences prefs = await _prefs;
+
+    var name = prefs.getString('name');
+
+    var bigTextStyleInformation = BigTextStyleInformation(
+      'Lembre-se que o exercício físico ajuda na melhoria da Dor Lombar Crônica! <br><br>Continue assim!',
+      htmlFormatBigText: true,
+    );
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'Confirmação channel id',
+        'Confirmação channel name',
+        'Confirmação channel description',
+        styleInformation: bigTextStyleInformation);
+    var platformChannelSpecifics =
+        NotificationDetails(androidPlatformChannelSpecifics, null);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Muito bem, $name!', 'silent body', platformChannelSpecifics, payload: 'confirmation');
+  }
+  
+  Future<void> _showRememberNotification() async {
+    final SharedPreferences prefs = await _prefs;
+    var time = Time(10, 0, 0);
+
+    var name = prefs.getString('name');
+
+    var bigTextStyleInformation = BigTextStyleInformation(
+      'o exercício traz muitos benefícios quando realizado regularmente.<br><br>Continue se exercitando!',
+      htmlFormatBigText: true,
+    );
+    var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+        'Lembrete channel id',
+        'Lembrete channel name',
+        'Lembrete channel description',
+        styleInformation: bigTextStyleInformation);
+    var platformChannelSpecifics =
+        NotificationDetails(androidPlatformChannelSpecifics, null);
+    await flutterLocalNotificationsPlugin.show(
+        0, '$name,', 'silent body', platformChannelSpecifics, payload: 'diario');
+    // await flutterLocalNotificationsPlugin.showDailyAtTime(
+    //     0, '$name,', 'silent body', time, platformChannelSpecifics, payload: 'confirmation');
+  }
+
+  Future<List> _checkPendingNotificationRequests() async {
+    var pendingNotificationRequests = await flutterLocalNotificationsPlugin.pendingNotificationRequests();
+    return pendingNotificationRequests;
+  }
+
+  Future<void> _cancelAllNotifications() async {
+    await flutterLocalNotificationsPlugin.cancelAll();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _requestIOSPermissions();
+    _configureDidReceiveLocalNotificationSubject();
+  }
+
+  void _requestIOSPermissions() {
+    flutterLocalNotificationsPlugin
+        .resolvePlatformSpecificImplementation<
+            IOSFlutterLocalNotificationsPlugin>()
+        ?.requestPermissions(
+          alert: true,
+          badge: true,
+          sound: true,
+        );
+  }
+
+  void _configureDidReceiveLocalNotificationSubject() {
+    didReceiveLocalNotificationSubject.stream
+        .listen((ReceivedNotification receivedNotification) async {
+      await showDialog(
+        context: context,
+        builder: (BuildContext context) => CupertinoAlertDialog(
+          title: receivedNotification.title != null
+              ? Text(receivedNotification.title)
+              : null,
+          content: receivedNotification.body != null
+              ? Text(receivedNotification.body)
+              : null,
+          actions: [
+            CupertinoDialogAction(
+              isDefaultAction: true,
+              child: Text('Ok'),
+              onPressed: () async {
+                Navigator.of(context, rootNavigator: true).pop();
+                await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DiaryPage(),
+                  ),
+                );
+              },
+            )
+          ],
+        ),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -358,10 +479,8 @@ class _DiaryPageState extends State<DiaryPage> {
                                           child: Text("OK", style: TextStyle(color: Colors.white),),
                                           color: Colors.green[300],
                                           onPressed: (){ 
-                                            Navigator.push(
-                                              context,
-                                              MaterialPageRoute(builder: (context) => MenuPage()),
-                                            );
+                                            verifyNotifications();
+                                            Navigator.of(context).pop();
                                           },
                                         ),
                                       ],
@@ -385,7 +504,7 @@ class _DiaryPageState extends State<DiaryPage> {
                                 constraints: BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "Avançar",
+                                  "Finalizar",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontFamily: 'MontserratRegular',
