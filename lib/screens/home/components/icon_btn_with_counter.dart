@@ -29,18 +29,18 @@ class IconBtnWithCounter extends StatelessWidget {
             height: getProportionateScreenWidth(46),
             width: getProportionateScreenWidth(46),
             decoration: BoxDecoration(
-              color: kSecondaryColor.withOpacity(0.1),
+              color: Colors.white.withOpacity(0.8),
               shape: BoxShape.circle,
             ),
             child: SvgPicture.asset(svgSrc),
           ),
           if (numOfitem != 0)
             Positioned(
-              top: -3,
+              top: -5,
               right: 0,
               child: Container(
-                height: getProportionateScreenWidth(16),
-                width: getProportionateScreenWidth(16),
+                height: getProportionateScreenWidth(20),
+                width: getProportionateScreenWidth(20),
                 decoration: BoxDecoration(
                   color: Color(0xFFFF4848),
                   shape: BoxShape.circle,
@@ -50,7 +50,7 @@ class IconBtnWithCounter extends StatelessWidget {
                   child: Text(
                     "$numOfitem",
                     style: TextStyle(
-                      fontSize: getProportionateScreenWidth(10),
+                      fontSize: getProportionateScreenWidth(12),
                       height: 1,
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
