@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:reboot/components/custom_surfix_icon.dart';
 import 'package:reboot/components/form_error.dart';
 import 'package:reboot/screens/forgot_password/forgot_password_screen.dart';
-import 'package:reboot/screens/login_success/login_success_screen.dart';
+import 'package:reboot/screens/home/home_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -17,7 +17,9 @@ class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
-  bool remember = false;
+  bool loading = false;
+  bool hide_password = true;
+
   final List<String> errors = [];
 
   void addError({String error}) {
@@ -61,49 +63,17 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
+            loading: loading,
             text: "Entrar",
             press: () {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                loginAction();
               }
             },
           ),
         ],
-      ),
-    );
-  }
-
-  TextFormField buildPasswordFormField() {
-    return TextFormField(
-      obscureText: true,
-      onSaved: (newValue) => password = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kPassNullError);
-        } else if (value.length >= 8) {
-          removeError(error: kShortPassError);
-        }
-        return null;
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kPassNullError);
-          return "";
-        } else if (value.length < 8) {
-          addError(error: kShortPassError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "Senha",
-        hintText: "Informe a sua Senha",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
       ),
     );
   }
@@ -139,5 +109,55 @@ class _SignFormState extends State<SignForm> {
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
       ),
     );
+  }
+
+  TextFormField buildPasswordFormField() {
+    return TextFormField(
+      obscureText: hide_password,
+      onSaved: (newValue) => password = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kPassNullError);
+        } else if (value.length >= 8) {
+          removeError(error: kShortPassError);
+        }
+        return null;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kPassNullError);
+          return "";
+        } else if (value.length < 8) {
+          addError(error: kShortPassError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Senha",
+        hintText: "Informe a sua Senha",
+        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // if you r using flutter less then 1.20.* then maybe this is not working properly
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon:
+         CustomSurffixIcon(
+          svgIcon: hide_password ? "assets/icons/hide-eye.svg" : "assets/icons/eye.svg",
+          press: () {
+            setState(() {
+              hide_password = !hide_password;
+            });
+          }),
+      ),
+    );
+  }
+
+  Future loginAction() async {
+    setState(() {
+      loading = true;
+    });
+    //replace the below line of code with your login request
+    await new Future.delayed(const Duration(seconds: 2));
+    Navigator.pushNamed(context, HomeScreen.routeName);
+    // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
   }
 }

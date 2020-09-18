@@ -11,23 +11,25 @@ class NoAccountText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          "Ainda não possui uma conta? ",
-          style: TextStyle(fontSize: getProportionateScreenWidth(16)),
-        ),
-        GestureDetector(
-          onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
-          child: Text(
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, SignUpScreen.routeName),
+      child:
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Ainda não possui uma conta? ",
+            style: TextStyle(fontSize: getProportionateScreenWidth(16)),
+          ),
+        
+          Text(
             "Cadastre-se",
             style: TextStyle(
                 fontSize: getProportionateScreenWidth(16),
                 color: kPrimaryColor),
           ),
-        ),
-      ],
+        ],
+      )
     );
   }
 }
