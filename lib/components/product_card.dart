@@ -8,7 +8,7 @@ import '../size_config.dart';
 class ProductCard extends StatelessWidget {
   const ProductCard({
     Key key,
-    this.width = 140,
+    this.width = 160,
     this.aspectRetio = 1.02,
     @required this.product,
   }) : super(key: key);
@@ -22,18 +22,40 @@ class ProductCard extends StatelessWidget {
       padding: EdgeInsets.only(left: getProportionateScreenWidth(20)),
       child: SizedBox(
         width: getProportionateScreenWidth(width),
-        child: Column(
+        child: 
+        // Card(
+        //   child: 
+        //   InkWell(
+        //     splashColor: Colors.blue.withAlpha(30),
+        //     onTap: () {
+        //       print('Card tapped.');
+        //     },
+        //     child: Container(
+        //       child: 
+        //       Row(
+        //         children: [
+        //           Image.asset(product.image, fit: BoxFit.cover,)
+        //         ],
+        //       ),
+        //     ),
+        //   )
+        // )
+
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.02,
+              aspectRatio: .7,
               child: Container(
-                padding: EdgeInsets.all(getProportionateScreenWidth(20)),
-                decoration: BoxDecoration(
-                  color: kSecondaryColor.withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: Image.asset(product.image),
+                child:
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Image.asset(
+                    product.image,
+                    fit: BoxFit.fill,
+                  ),
+                )
               ),
             ),
             const SizedBox(height: 10),
@@ -46,7 +68,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${product.price}",
+                  "R\$ ${product.price}",
                   style: TextStyle(
                     fontSize: getProportionateScreenWidth(18),
                     fontWeight: FontWeight.w600,

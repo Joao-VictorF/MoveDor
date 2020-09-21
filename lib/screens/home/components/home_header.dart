@@ -37,7 +37,9 @@ class HomeHeader extends StatelessWidget {
             width: double.infinity,
             height: getProportionateScreenHeight(215),
           ),
+          
           Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(width: getProportionateScreenWidth(20)),
               Expanded(
@@ -45,7 +47,7 @@ class HomeHeader extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: getProportionateScreenHeight(40)),
+                    SizedBox(height: getProportionateScreenHeight(50)),
                     Text(
                       "Olá, João",
                       style: TextStyle(
@@ -64,12 +66,11 @@ class HomeHeader extends StatelessWidget {
                 ), 
               ),
               Expanded(
-                flex: 1,
                 child: 
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
+                    SizedBox(height: getProportionateScreenHeight(30)),
                     IconBtnWithCounter(
                       numOfitem: 2,
                       svgSrc: "assets/icons/Cart Icon.svg",
@@ -78,6 +79,8 @@ class HomeHeader extends StatelessWidget {
                   ],
                 ), 
               ),
+               
+              
               SizedBox(width: getProportionateScreenWidth(20)),
             ],
           ),
@@ -93,7 +96,7 @@ class HomeHeader extends StatelessWidget {
           ),
           Positioned(
             right: 0,
-            bottom: getProportionateScreenWidth(-25),
+            bottom: getProportionateScreenWidth(-35),
             child: Image.asset(
               "assets/images/et_hand.png"
             ),

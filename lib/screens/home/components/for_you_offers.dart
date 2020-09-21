@@ -27,6 +27,7 @@ class ForYouOffers extends StatelessWidget {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               ...List.generate(
                 demoProducts.length,

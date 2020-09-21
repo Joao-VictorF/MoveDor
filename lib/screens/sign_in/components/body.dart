@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
               children: [
                 SizedBox(height: SizeConfig.screenHeight * 0.04),
                 Image.asset(
-                  "assets/images/illustration/sign_in.gif",
+                  "assets/images/illustrations/sign_in.gif",
                   height: getProportionateScreenHeight(250),
                   width: getProportionateScreenWidth(220),
                 ),

@@ -20,7 +20,7 @@ class Body extends StatelessWidget {
             children: [
               SizedBox(height: SizeConfig.screenHeight * 0.04),
               Image.asset(
-                "assets/images/illustration/forgot_pass.gif",
+                "assets/images/illustrations/forgot_pass.gif",
                 height: getProportionateScreenHeight(300),
                 width: getProportionateScreenWidth(270),
               ),
@@ -99,9 +99,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
             ),
           ),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           FormError(errors: errors),
-          SizedBox(height: SizeConfig.screenHeight * 0.04),
+          SizedBox(height: getProportionateScreenHeight(15)),
           DefaultButton(
             text: "Enviar",
             press: () {
@@ -110,8 +110,9 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
               }
             },
           ),
-          SizedBox(height: SizeConfig.screenHeight * 0.1),
+          SizedBox(height: getProportionateScreenHeight(15)),
           NoAccountText(),
+          SizedBox(height: getProportionateScreenHeight(15)),
         ],
       ),
     );

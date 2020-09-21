@@ -59,9 +59,9 @@ class _SignFormState extends State<SignForm> {
               )
             ],
           ),
-          SizedBox(height: getProportionateScreenHeight(30)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           FormError(errors: errors),
-          SizedBox(height: getProportionateScreenHeight(20)),
+          SizedBox(height: getProportionateScreenHeight(15)),
           DefaultButton(
             loading: loading,
             text: "Entrar",
