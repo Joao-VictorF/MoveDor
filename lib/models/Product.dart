@@ -4,7 +4,7 @@ class Product {
   final String title, description;
   final String image;
   final double rating, price;
-  final bool isFavourite;
+  final bool haveStock, isFavourite;
   Product({
     @required this.image,
     this.rating = 0.0,
@@ -12,6 +12,7 @@ class Product {
 
     @required this.title,
     @required this.price,
+    @required this.haveStock,
     @required this.description,
   });
 }
@@ -21,34 +22,38 @@ class Product {
 List<Product> demoProducts = [
   Product(
     image: "assets/images/hulk.png",
-    title: "Wireless Controller for PS4™",
+    title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
     price: 64.99,
+    haveStock: true,
     description: description,
     rating: 4.8,
     isFavourite: true,
   ),
   Product(
     image: "assets/images/hulk.png",
-    title: "Nike Sport White - Man Pant",
+    title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
     price: 50.5,
+    haveStock: false,
     description: description,
     rating: 4.1,
   ),
   Product(
     image: "assets/images/hulk.png",
-    title: "Gloves XC Omega - Polygon",
+    title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
     price: 36.55,
+    haveStock: true,
     description: description,
     rating: 4.1,
   ),
   Product(
     image: "assets/images/hulk.png",
-    title: "Logitech Head",
+    title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
     price: 20.20,
+    haveStock: false,
     description: description,
     rating: 4.1,
   ),
 ];
 
 const String description =
-    "Wireless Controller for PS4™ gives you what you want in your gaming from over precision control your games to sharing …";
+    "Em sua tão sonhada lua de mel, Ben Grimm e Alícia Masters viajam para um remoto paraíso tropical - até que alguém aparece para estragar tudo!";

@@ -33,7 +33,7 @@ class Body extends StatelessWidget {
                 ),
               ),
               Text(
-                "Por favor informe o seu email e nós enviamermos \npara você um link para recuperar sua senha.",
+                "Por favor informe o seu email e nós enviameremos para você um link para recuperar sua senha.",
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: SizeConfig.screenHeight * 0.1),

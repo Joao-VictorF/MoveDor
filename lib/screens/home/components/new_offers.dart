@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reboot/screens/details/details_screen.dart';
 
 import '../../../size_config.dart';
 import 'section_title.dart';
@@ -31,7 +32,13 @@ class NewOffers extends StatelessWidget {
               ...List.generate(
                 demoProducts.length,
                 (index) {
-                  return ProductCard(product: demoProducts[index]);
+                  return ProductCard(
+                    product: demoProducts[index],
+                    press: () => Navigator.pushNamed(
+                      context, DetailsScreen.routeName, 
+                      arguments: ProductDetailsArguments(
+                        product: demoProducts[index]))
+                  );
                 },
               ),
               SizedBox(width: getProportionateScreenWidth(20)),
