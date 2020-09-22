@@ -20,10 +20,12 @@ class CustomAppBar extends PreferredSize {
           children: [
             RoundedIconBtn(
               iconData: Icon(Icons.arrow_back_ios, size: 18, color: Colors.black87),
+              showShadow: true,
               press: () => Navigator.pop(context)
             ),
             RoundedIconBtn(
               iconData: Icon(Icons.share, size: 18, color: Colors.black87),
+              showShadow: true,
               press: () => Navigator.pop(context)
             ),
           ]
