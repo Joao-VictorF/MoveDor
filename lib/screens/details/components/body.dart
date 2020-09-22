@@ -25,15 +25,15 @@ class Body extends StatelessWidget {
               child: Image.asset(product.image, scale: 0.6,),
             )
           ),
-          Row(children: [],),
+          Row(children: []),
+          
           TopRoundedContainer(
             color: Colors.white, 
             child: 
             Column(
               children: [
                 ProductDescription(
-                  product: product,
-                  pressOnSeeMore: () {}
+                  product,
                 ),
                 ProductPricing(product),
               ],

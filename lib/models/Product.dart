@@ -4,7 +4,7 @@ class Product {
   final String title, description;
   final String image;
   final double rating, price;
-  final bool haveStock, isFavourite;
+  bool haveStock, isFavourite;
   Product({
     @required this.image,
     this.rating = 0.0,
