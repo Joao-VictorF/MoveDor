@@ -1,78 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:reboot/constants.dart';
+import 'package:reboot/components/bottom_nav.dart';
+import 'package:reboot/screens/collection/collection_screen.dart';
+import 'package:reboot/screens/favorites/favorites_screen.dart';
+import 'package:reboot/screens/profile/profile_screen.dart';
 
 import 'components/body.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget  {
   static String routeName = "/home";
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomeScreen> {
+  int _selectedIndex = 0;
+  final PageController _pageController = PageController();
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Body(),
-      bottomNavigationBar: BottomNav(0),
-    );
-  }
-}
-
-class BottomNav extends StatefulWidget {
-  final int index;
-  BottomNav(this.index);
-  
-  _BottomNavState createState() => _BottomNavState();
-}
-
-class _BottomNavState extends State<BottomNav> {
-  int _selectedIndex;
-
-  // ignore: must_call_super
-  void initState() {
-    _selectedIndex = widget.index;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return 
-    Container(
-      decoration: BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.1))
-      ]),
-      child: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-          child: GNav(
-            gap: 8,
-            activeColor: Colors.white,
-            iconSize: 24,
-            padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-            duration: Duration(milliseconds: 800),
-            tabBackgroundColor: kPrimaryColor,
-            tabs: [
-              GButton(
-                icon: LineIcons.home,
-                text: 'Inicio',
-              ),
-              GButton(
-                icon: LineIcons.archive,
-                text: 'Coleção',
-              ),
-              GButton(
-                icon: LineIcons.user,
-                text: 'João',
-              ),
-            ],
-            selectedIndex: _selectedIndex,
-            onTabChange: (index) {
-              if(_selectedIndex != index) {
-                print("diferente");
-              }
-            }
-          ),
-        ),
+      // body: Body(),
+      body: PageView(
+          controller: _pageController,
+          children: <Widget>[
+            Body(),
+            FavoritesScreen(),
+            CollectionScreen(),
+            ProfileScreen(),
+          ],
+          onPageChanged: (page) {
+            setState(() {
+              _selectedIndex = page;
+            });
+          },
       ),
+      bottomNavigationBar: BottomNav(_selectedIndex, _pageController)
     );
   }
-
-  
 }

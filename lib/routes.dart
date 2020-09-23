@@ -5,6 +5,7 @@ import 'package:reboot/screens/forgot_password/forgot_password_screen.dart';
 import 'package:reboot/screens/home/home_screen.dart';
 import 'package:reboot/screens/login_success/login_success_screen.dart';
 import 'package:reboot/screens/otp/otp_screen.dart';
+import 'package:reboot/screens/profile/profile_screen.dart';
 import 'package:reboot/screens/sign_in/sign_in_screen.dart';
 import 'package:reboot/screens/sign_in/sign_up/sign_up_screen.dart';
 import 'package:reboot/screens/splash/initial_splash.dart';
@@ -23,4 +24,5 @@ final Map<String, WidgetBuilder> routes = {
   OtpScreen.routeName:             (context) => OtpScreen(),
   HomeScreen.routeName:            (context) => HomeScreen(),
   DetailsScreen.routeName:         (context) => DetailsScreen(),
+  ProfileScreen.routeName:         (context) => ProfileScreen(),
 };

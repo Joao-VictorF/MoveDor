@@ -19,6 +19,7 @@ class _SignFormState extends State<SignForm> {
   String email;
   String password;
   bool loading = false;
+  // ignore: non_constant_identifier_names
   bool hide_password = true;
 
   final List<String> errors = [];
@@ -161,7 +162,7 @@ class _SignFormState extends State<SignForm> {
     });
     //replace the below line of code with your login request
     await new Future.delayed(const Duration(seconds: 2));
-    Navigator.pushNamed(context, HomeScreen.routeName);
+    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
     // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
   }
 }
