@@ -21,7 +21,8 @@ class HomeHeader extends StatelessWidget {
         children: [
           Container(
             decoration: BoxDecoration(
-              color: kPrimaryColor,
+              color: Color.fromRGBO(133, 102, 235, 1),
+              // color: kPrimaryColor,
                borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(50)
               ),
@@ -116,7 +117,8 @@ class FilterBtn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return 
+    Container(
       width: 60,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -131,13 +133,16 @@ class FilterBtn extends StatelessWidget {
         ],
       ),
       child:
-      FlatButton (
-        color: Colors.white,
-        onPressed: press,
-        child: 
-        Icon(
-          Icons.filter_list,
-          color: Colors.black.withOpacity(.7)
+      Padding(
+        padding: const EdgeInsets.symmetric(vertical: 2.0),
+        child: FlatButton (
+          color: Colors.white,
+          onPressed: press,
+          child: 
+          Icon(
+            Icons.filter_list,
+            color: Colors.black.withOpacity(.5)
+          ),
         ),
       )
     );
