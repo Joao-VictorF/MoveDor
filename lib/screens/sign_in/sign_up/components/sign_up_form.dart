@@ -4,7 +4,6 @@ import 'package:reboot/components/custom_surfix_icon.dart';
 import 'package:reboot/components/default_button.dart';
 import 'package:reboot/components/form_error.dart';
 import 'package:reboot/screens/complete_profile/complete_profile_screen.dart';
-import 'package:reboot/screens/login_success/login_success_screen.dart';
 
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
@@ -18,8 +17,11 @@ class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
   String email;
   String password;
+  // ignore: non_constant_identifier_names
   String confirm_password;
+  // ignore: non_constant_identifier_names
   bool hide_password = true;
+  // ignore: non_constant_identifier_names
   bool hide_confirm_password = true;
 
   final List<String> errors = [];

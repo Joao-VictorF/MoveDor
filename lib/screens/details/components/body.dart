@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reboot/components/default_button.dart';
 import 'package:reboot/models/Product.dart';
 import 'product_description.dart';
 import 'product_pricing.dart';

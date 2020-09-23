@@ -26,6 +26,7 @@ class BottomNav extends StatefulWidget {
 class _BottomNavState extends State<BottomNav> {
   int _selectedIndex;
 
+  // ignore: must_call_super
   void initState() {
     _selectedIndex = widget.index;
   }

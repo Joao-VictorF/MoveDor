@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:reboot/constants.dart';
 
 import '../../../size_config.dart';
 import 'icon_btn_with_counter.dart';
