@@ -29,6 +29,8 @@ dependencies:
   cupertino_icons: ^0.1.3
   # if you are using latest flutter please update your flutter_svg package to ^0.18.*
   flutter_svg: ^0.18.0 # help us to use SVG in our app
+  google_nav_bar: ^3.0.1
+  line_icons: ^0.2.0
   provider: ^4.3.1 # for State management
 
 dev_dependencies:

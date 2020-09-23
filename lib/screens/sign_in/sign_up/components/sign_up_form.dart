@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:reboot/components/custom_surfix_icon.dart';
 import 'package:reboot/components/default_button.dart';
 import 'package:reboot/components/form_error.dart';
@@ -18,6 +19,8 @@ class _SignUpFormState extends State<SignUpForm> {
   String email;
   String password;
   String confirm_password;
+  bool hide_password = true;
+  bool hide_confirm_password = true;
 
   final List<String> errors = [];
 
@@ -65,7 +68,7 @@ class _SignUpFormState extends State<SignUpForm> {
 
   TextFormField buildConformPassFormField() {
     return TextFormField(
-      obscureText: true,
+      obscureText: hide_confirm_password,
       onSaved: (newValue) => confirm_password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -91,14 +94,26 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: IconButton(
+            icon: hide_confirm_password 
+              ? Icon(LineIcons.eye_slash, size: 30, color: Colors.black.withOpacity(.4))
+              : Icon(LineIcons.eye,       size: 30, color: Colors.black.withOpacity(.4)),
+            onPressed: () {
+              setState(() {
+                hide_confirm_password = !hide_confirm_password;
+              });
+            }
+          ),
+        ),
       ),
     );
   }
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: true,
+      obscureText: hide_password,
       onSaved: (newValue) => password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -124,7 +139,19 @@ class _SignUpFormState extends State<SignUpForm> {
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: IconButton(
+            icon: hide_password 
+              ? Icon(LineIcons.eye_slash, size: 30, color: Colors.black.withOpacity(.4))
+              : Icon(LineIcons.eye,       size: 30, color: Colors.black.withOpacity(.4)),
+            onPressed: () {
+              setState(() {
+                hide_password = !hide_password;
+              });
+            }
+          ),
+        ),
       ),
     );
   }

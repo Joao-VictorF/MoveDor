@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:reboot/components/custom_surfix_icon.dart';
 import 'package:reboot/components/form_error.dart';
 import 'package:reboot/screens/forgot_password/forgot_password_screen.dart';
@@ -136,17 +137,20 @@ class _SignFormState extends State<SignForm> {
       decoration: InputDecoration(
         labelText: "Senha",
         hintText: "Informe a sua Senha",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon:
-         CustomSurffixIcon(
-          svgIcon: hide_password ? "assets/icons/hide-eye.svg" : "assets/icons/eye.svg",
-          press: () {
-            setState(() {
-              hide_password = !hide_password;
-            });
-          }),
+        suffixIcon: Padding(
+          padding: const EdgeInsets.only(right: 8.0),
+          child: IconButton(
+            icon: hide_password 
+              ? Icon(LineIcons.eye_slash, size: 30, color: Colors.black.withOpacity(.4))
+              : Icon(LineIcons.eye,       size: 30, color: Colors.black.withOpacity(.4)),
+            onPressed: () {
+              setState(() {
+                hide_password = !hide_password;
+              });
+            }
+          ),
+        ),
       ),
     );
   }
