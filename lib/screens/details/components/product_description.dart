@@ -68,7 +68,9 @@ class _ProductDescriptionState extends State<ProductDescription>{
                       widget.product.isFavourite = !widget.product.isFavourite;
                     });
                   },
-                  child: Container(
+                  child: 
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 250),
                     padding: EdgeInsets.all(getProportionateScreenWidth(15)),
                     width: getProportionateScreenWidth(64),
                     decoration: BoxDecoration(
@@ -80,11 +82,14 @@ class _ProductDescriptionState extends State<ProductDescription>{
                         bottomLeft: Radius.circular(20),
                       )
                     ),
-                    child: SvgPicture.asset(
-                      "assets/icons/Heart Icon_2.svg",
-                      color: widget.product.isFavourite
-                        ? Color(0xFFFF4848)
-                        : Color(0xFFDBDEE4), 
+                    child: 
+                    Container(
+                      child: SvgPicture.asset(
+                        "assets/icons/Heart Icon_2.svg",
+                        color: widget.product.isFavourite
+                          ? Color(0xFFFF4848)
+                          : Color(0xFFDBDEE4), 
+                      ),
                     ),
                   ),
                 ),
