@@ -4,11 +4,12 @@ class Product {
   final String title, description;
   final String image;
   final double rating, price;
-  bool haveStock, isFavourite;
+  bool haveStock, isFavourite, inCart;
   Product({
     @required this.image,
     this.rating = 0.0,
     this.isFavourite = false,
+    this.inCart = false,
 
     @required this.title,
     @required this.price,
@@ -28,11 +29,12 @@ List<Product> demoProducts = [
     description: description,
     rating: 4.8,
     isFavourite: true,
+    inCart: true,
   ),
   Product(
     image: "assets/images/hulk.png",
     title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
-    price: 50.5,
+    price: 50.50,
     haveStock: false,
     description: description,
     rating: 4.1,
@@ -41,6 +43,7 @@ List<Product> demoProducts = [
     image: "assets/images/hulk.png",
     title: "Quarteto Fantástico - Coisa VS. Imortal Hulk",
     price: 36.55,
+    inCart: true,
     haveStock: true,
     description: description,
     rating: 4.1,
