@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+import '../../size_config.dart';
 import 'splash_screen.dart';
 
 class SplashScreenInitial extends StatefulWidget {
@@ -25,7 +26,7 @@ class _SplashScreenInitialState extends State<SplashScreenInitial> {
         fit: StackFit.expand,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(color: Color.fromRGBO(48, 48, 48, 1)),
+            decoration: BoxDecoration(color: Color.fromRGBO(247, 247, 247, 1)),
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -36,7 +37,11 @@ class _SplashScreenInitialState extends State<SplashScreenInitial> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.asset("assets/images/text_logo.png"),
+                      Image.asset(
+                        "assets/logo/logo_com_nome_ftransparente.png",
+                        height: 250,
+                        width: 235,
+                      ),
                       Padding(
                         padding: EdgeInsets.only(top: 10.0),
                       ),

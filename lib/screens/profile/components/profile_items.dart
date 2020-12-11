@@ -15,13 +15,8 @@ class ProfileItems extends StatelessWidget {
       "route": ""
     },
     {
-      "icon" : LineIcons.map_marker,
-      "text" : "Endereços",
-      "route": ""
-    },
-    {
-      "icon" : LineIcons.credit_card,
-      "text" : "Cartões de crédito",
+      "icon" : LineIcons.cogs,
+      "text" : "Preferências",
       "route": ""
     },
     {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:reboot/components/custom_surfix_icon.dart';
-import 'package:reboot/components/default_button.dart';
-import 'package:reboot/components/form_error.dart';
-import 'package:reboot/screens/complete_profile/complete_profile_screen.dart';
+import 'package:movedor/components/custom_surfix_icon.dart';
+import 'package:movedor/components/default_button.dart';
+import 'package:movedor/components/form_error.dart';
+import 'package:movedor/screens/complete_profile/complete_profile_screen.dart';
 
 import '../../../../constants.dart';
 import '../../../../size_config.dart';
@@ -56,11 +56,13 @@ class _SignUpFormState extends State<SignUpForm> {
           DefaultButton(
             text: "Criar conta",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                // if all are valid then go to success screen
+              // if (_formKey.currentState.validate()) {
+              //   _formKey.currentState.save();
+              //   // if all are valid then go to success screen
+              //   Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+              // }
                 Navigator.pushNamed(context, CompleteProfileScreen.routeName);
-              }
+
             },
           ),
         ],

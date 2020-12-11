@@ -1,15 +1,21 @@
 import 'package:flutter/widgets.dart';
-import 'package:reboot/screens/complete_profile/complete_profile_screen.dart';
-import 'package:reboot/screens/details/details_screen.dart';
-import 'package:reboot/screens/forgot_password/forgot_password_screen.dart';
-import 'package:reboot/screens/home/home_screen.dart';
-import 'package:reboot/screens/login_success/login_success_screen.dart';
-import 'package:reboot/screens/otp/otp_screen.dart';
-import 'package:reboot/screens/profile/profile_screen.dart';
-import 'package:reboot/screens/sign_in/sign_in_screen.dart';
-import 'package:reboot/screens/sign_in/sign_up/sign_up_screen.dart';
-import 'package:reboot/screens/splash/initial_splash.dart';
-import 'package:reboot/screens/splash/splash_screen.dart';
+
+import 'package:movedor/screens/splash/initial_splash.dart';
+import 'package:movedor/screens/splash/splash_screen.dart';
+
+import 'package:movedor/screens/sign_in/sign_in_screen.dart';
+import 'package:movedor/screens/sign_in/sign_up/sign_up_screen.dart';
+
+import 'package:movedor/screens/complete_profile/complete_profile_screen.dart';
+import 'package:movedor/screens/profile/profile_screen.dart';
+
+import 'package:movedor/screens/book/book_screen.dart';
+import 'package:movedor/screens/book/chapters_content/chapter01.dart';
+import 'package:movedor/screens/book/chapters_content/chapter02.dart';
+import 'package:movedor/screens/book/chapters_content/chapter03.dart';
+import 'package:movedor/screens/book/chapters_content/chapter04.dart';
+import 'package:movedor/screens/book/chapters_content/chapter05-quiz.dart';
+import 'package:movedor/screens/infographic/infographic_screen.dart';
 
 // We use name route
 // All our routes will be available here
@@ -17,12 +23,17 @@ final Map<String, WidgetBuilder> routes = {
   SplashScreenInitial.routeName:   (context) => SplashScreenInitial(),
   SplashScreen.routeName:          (context) => SplashScreen(),
   SignInScreen.routeName:          (context) => SignInScreen(),
-  ForgotPasswordScreen.routeName:  (context) => ForgotPasswordScreen(),
-  LoginSuccessScreen.routeName:    (context) => LoginSuccessScreen(),
   SignUpScreen.routeName:          (context) => SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
-  OtpScreen.routeName:             (context) => OtpScreen(),
-  HomeScreen.routeName:            (context) => HomeScreen(),
-  DetailsScreen.routeName:         (context) => DetailsScreen(),
+
+
+  // Livro e Capitulos
+  BookScreen.routeName:            (context) => BookScreen(),
+  Chapter01.routeName:             (context) => Chapter01(),
+  Chapter02.routeName:             (context) => Chapter02(),
+  Chapter03.routeName:             (context) => Chapter03(),
+  Chapter04.routeName:             (context) => Chapter04(),
+  Chapter05Quiz.routeName:         (context) => Chapter05Quiz(),
+  Infographic.routeName:           (context) => Infographic(),
   ProfileScreen.routeName:         (context) => ProfileScreen(),
 };

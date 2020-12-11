@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:reboot/components/no_account_text.dart';
-import 'package:reboot/components/social_card.dart';
+import 'package:movedor/components/no_account_text.dart';
+import 'package:movedor/components/social_card.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 
@@ -16,12 +16,6 @@ class Body extends StatelessWidget {
           child: SingleChildScrollView(
             child: Column(
               children: [
-                SizedBox(height: SizeConfig.screenHeight * 0.04),
-                Image.asset(
-                  "assets/images/illustrations/sign_in.gif",
-                  height: getProportionateScreenHeight(250),
-                  width: getProportionateScreenWidth(220),
-                ),
                 Text(
                   "Bem vindo de volta!",
                   style: TextStyle(

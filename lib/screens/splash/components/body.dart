@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:reboot/constants.dart';
-import 'package:reboot/screens/sign_in/sign_in_screen.dart';
-import 'package:reboot/size_config.dart';
+import 'package:movedor/constants.dart';
+import 'package:movedor/screens/sign_in/sign_in_screen.dart';
+import 'package:movedor/size_config.dart';
 
 // This is the best practice
 import '../components/splash_content.dart';
@@ -16,17 +16,16 @@ class _BodyState extends State<Body> {
   int currentPage = 0;
   List<Map<String, String>> splashData = [
     {
-      "text": "Encontre as suas HQ’s favoritas",
-      "image": "assets/images/illustrations/splash_1.gif"
+      "text": "Entenda o que você está passando",
+      "image": "assets/caps_illustrations/cap2-01.png"
     },
     {
-      "text":
-          "Compre sem sair de casa!",
-      "image": "assets/images/illustrations/splash_2.gif"
+      "text": "Saiba como tratar!",
+      "image": "assets/caps_illustrations/cap4-01.png"
     },
     {
-      "text": "Receba os seus pedidos em casa",
-      "image": "assets/images/illustrations/splash_4.gif"
+      "text": "Vamos lá?",
+      "image": "assets/caps_illustrations/cap5_illustration.png"
     },
   ];
   @override
@@ -36,6 +35,13 @@ class _BodyState extends State<Body> {
         width: double.infinity,
         child: Column(
           children: <Widget>[
+            Expanded(
+              child: Image.asset(
+                "assets/logo/logo_com_nome_ftransparente.png",
+                height: getProportionateScreenHeight(130),
+                width: getProportionateScreenWidth(115),
+              ),
+            ),
             Expanded(
               flex: 3,
               child: PageView.builder(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reboot/components/rounded_icon_btn.dart';
+import 'package:movedor/components/rounded_icon_btn.dart';
 
 import 'components/body.dart';
 

@@ -17,16 +17,20 @@ class _BottomNavState extends State<BottomNav> {
     Color color;
     switch (widget.index) {
       case 0:
-        color = Color.fromRGBO(133, 102, 235, 1);
-        break;
-      case 1:
-        color = Colors.red[300];
-        break;
-      case 2:
         color = kPrimaryColor;
         break;
+      case 1:
+        color = kPrimaryLightColor;
+        break;
+      case 2:
+        color = kPrimaryLightColor;
+        break;
       case 3:
-        color = Colors.green[300];
+        color = kPrimaryLightColor;
+        break;
+      case 4:
+        color = kPrimaryLightColor;
+        break;
     }
 
     return color;
@@ -51,20 +55,20 @@ class _BottomNavState extends State<BottomNav> {
               tabBackgroundColor: _getTabBackgroundColor(),
               tabs: [
                 GButton(
-                  icon: LineIcons.home,
-                  text: 'Inicio',
+                  icon: LineIcons.book,
+                  text: 'Livreto',
                 ),
                 GButton(
-                  icon: LineIcons.heart_o,
-                  text: 'Favoritos',
+                  icon: LineIcons.commenting,
+                  text: 'Infográfico',
                 ),
                 GButton(
-                  icon: LineIcons.archive,
-                  text: 'Coleção',
+                  icon: LineIcons.calendar_o,
+                  text: 'Diário',
                 ),
-                GButton(
-                  icon: LineIcons.user,
-                  text: 'João',
+                GButton( 
+                  icon: LineIcons.info_circle,
+                  text: 'Sobre',
                 ),
               ],
               selectedIndex: widget.index,
@@ -75,7 +79,6 @@ class _BottomNavState extends State<BottomNav> {
                   });
 
                   widget._pageController.jumpToPage(index);
-                  
                 }
               }
             ),

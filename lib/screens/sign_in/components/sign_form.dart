@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:reboot/components/custom_surfix_icon.dart';
-import 'package:reboot/components/form_error.dart';
-import 'package:reboot/screens/forgot_password/forgot_password_screen.dart';
-import 'package:reboot/screens/home/home_screen.dart';
+import 'package:movedor/components/custom_surfix_icon.dart';
+import 'package:movedor/components/form_error.dart';
+import 'package:movedor/screens/book/book_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -48,19 +47,6 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPasswordFormField(),
           SizedBox(height: getProportionateScreenHeight(15)),
-          Row(
-            children: [
-              Spacer(),
-              GestureDetector(
-                onTap: () => Navigator.pushNamed(
-                    context, ForgotPasswordScreen.routeName),
-                child: Text(
-                  "Esqueci a minha senha",
-                  style: TextStyle(decoration: TextDecoration.underline),
-                ),
-              )
-            ],
-          ),
           SizedBox(height: getProportionateScreenHeight(15)),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(15)),
@@ -68,11 +54,15 @@ class _SignFormState extends State<SignForm> {
             loading: loading,
             text: "Entrar",
             press: () {
-              if (_formKey.currentState.validate()) {
-                _formKey.currentState.save();
-                // if all are valid then go to success screen
-                loginAction();
-              }
+              //   // if all are valid then go to success screen
+
+              // if (_formKey.currentState.validate()) {
+              //   _formKey.currentState.save();
+              //   loginAction();
+              // }
+
+              loginAction();
+
             },
           ),
         ],
@@ -162,7 +152,7 @@ class _SignFormState extends State<SignForm> {
     });
     //replace the below line of code with your login request
     await new Future.delayed(const Duration(seconds: 2));
-    Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, BookScreen.routeName, (route) => false);
     // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
   }
 }

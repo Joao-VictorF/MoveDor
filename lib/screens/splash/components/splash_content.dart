@@ -15,19 +15,15 @@ class SplashContent extends StatelessWidget {
     return Column(
       children: <Widget>[
         Spacer(),
-        Image.asset(
-          "assets/images/text_logo.png",
-          height: getProportionateScreenHeight(130),
-          width: getProportionateScreenWidth(115),
-        ),
         Spacer(flex: 2),
         Image.asset(
           image,
           height: getProportionateScreenHeight(300),
           width: getProportionateScreenWidth(270),
         ),
+        SizedBox(height: getProportionateScreenHeight(20)),
         Text(
-          text, 
+          '$text', 
           textAlign: TextAlign.center,
           style: TextStyle(
             fontSize: getProportionateScreenWidth(18),
