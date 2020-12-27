@@ -30,18 +30,14 @@ class _Chapter03State extends State<Chapter03> {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    _controller = VideoPlayerController.asset('assets/videos/cap1.mp4');
-
     _controller = VideoPlayerController.asset('assets/videos/cap1.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
-          var tempo = _controller.value.duration * 0.9;
-          Timer(tempo, () {
-            finalizouChapter03 = true;
-          });
+          _controller.play();
         });
       });
+      _controller.addListener(checkVideoStatus);
   }
 
   @override
@@ -109,5 +105,12 @@ class _Chapter03State extends State<Chapter03> {
         ),
       ),
     );
+  }
+  checkVideoStatus() async {
+    int duration = (_controller.value.duration.inSeconds * 0.1).toInt();
+    ///Se a posição de progresso do vídeo for igual a 90% da duração do mesmo, então vou dar como finalizado o capítulo.
+    if (_controller.value.position.inSeconds == duration) {
+      finalizouChapter03 = true;
+    }
   }
 }
