@@ -107,7 +107,7 @@ class _Chapter01State extends State<Chapter01> {
     );
   }
   checkVideoStatus() async {
-    int duration = (_controller.value.duration.inSeconds * 0.1).toInt();
+    int duration = (_controller.value.duration.inSeconds * 0.9).toInt();
     ///Se a posição de progresso do vídeo for igual a 90% da duração do mesmo, então vou dar como finalizado o capítulo.
     if (_controller.value.position.inSeconds == duration) {
       finalizouChapter01 = true;
