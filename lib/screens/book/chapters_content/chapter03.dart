@@ -30,7 +30,7 @@ class _Chapter03State extends State<Chapter03> {
       DeviceOrientation.landscapeLeft,
     ]);
 
-    _controller = VideoPlayerController.asset('assets/videos/cap1.mp4')
+    _controller = VideoPlayerController.asset('assets/videos/cap3.mp4')
       ..initialize().then((_) {
         // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
         setState(() {
