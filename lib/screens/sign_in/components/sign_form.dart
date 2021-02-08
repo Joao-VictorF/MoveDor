@@ -3,6 +3,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:movedor/components/custom_surfix_icon.dart';
 import 'package:movedor/components/form_error.dart';
 import 'package:movedor/screens/book/book_screen.dart';
+import 'package:movedor/screens/search/search_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -152,7 +153,8 @@ class _SignFormState extends State<SignForm> {
     });
     //replace the below line of code with your login request
     await new Future.delayed(const Duration(seconds: 2));
-    Navigator.pushNamedAndRemoveUntil(context, BookScreen.routeName, (route) => false);
+    Navigator.pushNamedAndRemoveUntil(context, SearchScreen.routeName, (route) => false);
+    // Navigator.pushNamedAndRemoveUntil(context, BookScreen.routeName, (route) => false);
     // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
   }
 }
