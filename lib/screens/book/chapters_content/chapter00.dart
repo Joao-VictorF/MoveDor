@@ -14,7 +14,7 @@ class Chapter00 extends StatefulWidget {
 }
 
 class _Chapter00State extends State<Chapter00> {
-  String nivelDor = "Muita dor";
+  String nivelDor = "Falsa";
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _Chapter00State extends State<Chapter00> {
                 height: 50,
               ),
               Center(
-                child: Text("Como está o seu nível de dor?",
+                child: Text("É fácil de machucar as suas costas",
                     style: TextStyle(
                       fontSize: 24,
                     )),
@@ -35,9 +35,164 @@ class _Chapter00State extends State<Chapter00> {
               SizedBox(
                 height: 20,
               ),
-              componentForms(context, "Muita dor", nivelDor),
-              componentForms(context, "Média dor", nivelDor),
-              componentForms(context, "Pouca dor", nivelDor),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Se você não for cuidadoso, você pode machucar suas costas",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Dor nas costas significa que você lesionou nas costas",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Uma 'fisgadinha' nas costas pode ser o primeiro sinal de uma lesão séria",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Se você tem dor nas costas, você deve evitar exercícios físicos",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Se você tem dor nas costas, você deveria se manter ativo",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Focar em outras coisas que não sejam as suas costas ajuda você a recuperar-se de dor nas costas",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Ter a expectativa de que sua dor nas costas vai melhorar, ajuda você à recuperar-se de dor nas costas",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Uma vez que você tenha tido dor nas costas, sempre existirá uma fraqueza",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
+              SizedBox(
+                height: 50,
+              ),
+              Center(
+                child: Text("Existe uma grande chance de que um episódio de dor nas costas não se resolverá",
+                    style: TextStyle(
+                      fontSize: 24,
+                    )),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              componentForms(context, "Falsa", nivelDor),
+              componentForms(context, "Possivelmente Falsa", nivelDor),
+              componentForms(context, "Incerto", nivelDor),
+              componentForms(context, "Possivelmente Verdadeira", nivelDor),
+              componentForms(context, "Verdadeira", nivelDor),
             ],
           ),
         ));
