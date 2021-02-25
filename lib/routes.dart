@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:movedor/screens/search/search_screen.dart';
 
 import 'package:movedor/screens/splash/initial_splash.dart';
 import 'package:movedor/screens/splash/splash_screen.dart';
@@ -26,6 +27,8 @@ final Map<String, WidgetBuilder> routes = {
   SignUpScreen.routeName:          (context) => SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
 
+  // Pesquisa
+  SearchScreen.routeName:            (context) => SearchScreen(),
 
   // Livro e Capitulos
   BookScreen.routeName:            (context) => BookScreen(),
