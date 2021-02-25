@@ -1,4 +1,7 @@
+import 'dart:js';
+
 import 'package:flutter/widgets.dart';
+import 'package:movedor/screens/book/chapters_content/chapter00.dart';
 import 'package:movedor/screens/search/search_screen.dart';
 
 import 'package:movedor/screens/splash/initial_splash.dart';
@@ -32,6 +35,7 @@ final Map<String, WidgetBuilder> routes = {
 
   // Livro e Capitulos
   BookScreen.routeName:            (context) => BookScreen(),
+  Chapter00.routeName:             (context) => Chapter00(),
   Chapter01.routeName:             (context) => Chapter01(),
   Chapter02.routeName:             (context) => Chapter02(),
   Chapter03.routeName:             (context) => Chapter03(),
