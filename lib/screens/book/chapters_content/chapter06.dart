@@ -64,7 +64,7 @@ class _Chapter06State extends State<Chapter06> {
                 ],
               ),
             ),
-            controller.medication
+            aux == true
                 ? Container(
                     margin: EdgeInsets.only(top: mediaSize.height * 0.04),
                     child: Text("Qual/Quais?",
@@ -74,7 +74,7 @@ class _Chapter06State extends State<Chapter06> {
                         )),
                   )
                 : Container(),
-            controller.medication
+            aux == true
                 ? Container(
                     margin: EdgeInsets.only(top: mediaSize.height * 0.04),
                     width: mediaSize.width * 0.7,
