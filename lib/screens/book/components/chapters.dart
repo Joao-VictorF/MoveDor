@@ -38,7 +38,8 @@ class Chapters extends StatelessWidget {
                           3: '/chapter-03',
                           4: '/chapter-04',
                           5: '/chapter-05',
-                          6: '/infographic'
+                          6: '/chapter-06',
+                          7: '/infographic'
                         };
 
                         print(chaptersRoutes[chapter]);
