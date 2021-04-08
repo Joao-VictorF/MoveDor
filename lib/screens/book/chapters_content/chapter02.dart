@@ -16,6 +16,7 @@ class _Chapter02State extends State<Chapter02> {
   MainController controller = MainController();
   TextEditingController textController;
   double fontSize = 18;
+  String dropdownValue;
   Map<String, bool> frases = {
     'Fico em casa a maior parte do tempo por causa de minhas costas.': false,
     'Mudo de posição frequentemente tentando deixar minhas costas confortáveis.':
@@ -106,6 +107,55 @@ class _Chapter02State extends State<Chapter02> {
                 ],
               ),
             ),
+            aux == true
+                ? Container(
+                    padding: EdgeInsets.only(
+                        top: MediaQuery.of(context).size.height * 0.05),
+                    width: MediaQuery.of(context).size.width * 0.9,
+                    child: Text(
+                      'Qual a frequência que você utiliza esses medicamentos?',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontFamily: 'MontserratRegular',
+                        color: Color(0xff36a9b0),
+                        fontSize: mediaSize.width * 0.07,
+                      ),
+                    ),
+                  )
+                : Container(),
+            aux == true
+                ? Container(
+                    margin: EdgeInsets.only(top: mediaSize.height * 0.02),
+                    child: DropdownButton(
+                      value: dropdownValue,
+                      icon: const Icon(Icons.arrow_downward),
+                      iconSize: 24,
+                      elevation: 16,
+                      style: const TextStyle(color: Colors.blue),
+                      underline: Container(
+                        height: 2,
+                        color: Colors.blueAccent,
+                      ),
+                      onChanged: (String newValue) {
+                        setState(() {
+                          dropdownValue = newValue;
+                        });
+                      },
+                      items: <String>[
+                        'Todo dia',
+                        '2 ou 3 vezes na semana',
+                        '1 vez na semana',
+                        '2 vezes no mês',
+                        '1 vez no mês'
+                      ].map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  )
+                : Container(),
             aux == true
                 ? Container(
                     margin: EdgeInsets.only(top: mediaSize.height * 0.04),
