@@ -123,7 +123,7 @@ class _BodyState extends State<Body> {
         false,
     'Eu tive dor no ombro e/ou pelo menos uma vez nas duas últimas semanas.':
         false,
-    'neu evito andar longas distâncias por causa da minha dor nas costas.':
+    'Eu evito andar longas distâncias por causa da minha dor nas costas.':
         false,
     'Nas duas últimas semanas, tenho me vestido mais devagar por causa da minha dor nas costas.':
         false,
