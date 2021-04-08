@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:movedor/controllers/main_controller.dart';
+import 'package:movedor/components/default_button.dart';
 import 'package:movedor/models/Chapter.dart';
+
+import '../../../constants.dart';
+import '../../../size_config.dart';
 import 'components/custom_app_bar.dart';
+import 'components/top_rounded_container.dart';
 
 class Chapter03 extends StatefulWidget {
   static String routeName = "/chapter-03";
@@ -11,169 +14,110 @@ class Chapter03 extends StatefulWidget {
 }
 
 class _Chapter03State extends State<Chapter03> {
-  bool aux;
-  Size mediaSize;
-  MainController controller = MainController();
-  TextEditingController textController;
-
-  @override
-  void initState() {
-    super.initState();
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-  }
-
-  @override
-  void dispose() {
-    SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-    SystemChrome.setPreferredOrientations([
-      DeviceOrientation.portraitUp,
-    ]);
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    mediaSize = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: Color(0xFFF5F6F9),
-      appBar: CustomAppBar(chapters[2]),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: EdgeInsets.only(
-                top: mediaSize.height * 0.05,
-              ),
-              child: Text("Você faz uso de algum \n       medicamento?",
-                  style: TextStyle(
-                    color: Color(0xff36a9b0),
-                    fontSize: mediaSize.width * 0.07,
-                  )),
-            ),
-            Container(
-              margin: EdgeInsets.only(
-                  left: mediaSize.width * 0.35, top: mediaSize.height * 0.03),
-              child: Column(
-                children: [
-                  componentFormsMedication(context, "Sim", true, controller),
-                  componentFormsMedication(context, "Não", false, controller),
-                ],
-              ),
-            ),
-            aux == true
-                ? Container(
-                    margin: EdgeInsets.only(top: mediaSize.height * 0.04),
-                    child: Text("Qual/Quais?",
-                        style: TextStyle(
-                          color: Color(0xff36a9b0),
-                          fontSize: mediaSize.width * 0.05,
-                        )),
+      appBar: CustomAppBar(chapters[1]),
+      body:
+        SingleChildScrollView(
+          child: 
+            Column(
+              children: [
+                SizedBox(
+                  width: getProportionateScreenWidth(238),
+                  height: getProportionateScreenWidth(238),
+                  child: AspectRatio(
+                    aspectRatio: 1,
+                    child: Image.asset(chapters[1].image, scale: 0.6,),
                   )
-                : Container(),
-            aux == true
-                ? Container(
-                    margin: EdgeInsets.only(top: mediaSize.height * 0.04),
-                    width: mediaSize.width * 0.7,
-                    child: TextField(
-                      controller: textController,
-                      minLines: 2,
-                      maxLines: 5,
-                      onChanged: (value) {
-                        controller.nameMedications = value;
-                      },
-                    ))
-                : Container(),
-            Container(
-              margin: EdgeInsets.only(top: mediaSize.height * 0.1),
-              child: RaisedButton(
-                onPressed: () {},
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(20.0)),
-                padding: EdgeInsets.all(0.0),
-                child: Ink(
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [Color(0xffa9d6c2), Color(0xff36a9b0)],
-                        begin: Alignment.centerLeft,
-                        end: Alignment.centerRight,
-                      ),
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Container(
-                    constraints:
-                        BoxConstraints(maxWidth: 300.0, minHeight: 50.0),
-                    alignment: Alignment.center,
-                    child: Text(
-                      "CONTINUAR",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          fontFamily: 'MontserratRegular',
-                          fontSize: mediaSize.width * 0.09,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
-                  ),
                 ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  componentFormsMedication(BuildContext context, String label, bool value,
-      MainController controller) {
-    return Container(
-      child: Row(
-        children: [
-          GestureDetector(
-            child: Container(
-              margin: EdgeInsets.only(left: 20, top: 10),
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                border: Border.all(width: 1.0, color: Color(0xff36a9b0)),
-                borderRadius: BorderRadius.circular(5),
-              ),
-              child: aux == value
-                  ? Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [Color(0xffa9d6c2), Color(0xff36a9b0)],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
+                Row(children: []),
+                
+                TopRoundedContainer(
+                  color: Colors.white, 
+                  child: 
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 25 ),
+                    child: Column(
+                      children: [
+                        Text(
+                          chapters[1].title,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 25,
+                          ),
                         ),
-                      ))
-                  : Container(
-                      height: 30,
-                      width: 30,
+                        Text(
+                          "Posso me movimentar mesmo com dor? Sim, é seguro se movimentar! \n\nSe você já sentiu dor ao fazer determinado movimento, seu corpo pode guardar essa informação como uma memória ruim associada ao movimento.",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: kTextColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                        AspectRatio(
+                          aspectRatio: 1,
+                          child: Image.asset('assets/caps_illustrations/cap2-01.png', scale: 0.6,),
+                        ),
+                        Text(
+                          "Em algumas pessoas, essa memória pode levar a comportamentos como evitar um movimento ou uma atividade, colaborando para a persistência da dor e da incapacidade.",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: kTextColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                         AspectRatio(
+                          aspectRatio: 1,
+                          child: Image.asset('assets/caps_illustrations/cap2-02.png', scale: 0.6,),
+                        ),
+                        Text(
+                          "O movimento pode romper esse ciclo!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Text(
+                          "\nVocê não precisa começar pelo movimento mais desafiador! \n \nInicie por um movimento mais fácil e simples e avance para um mais difícil.",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: kTextColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          "\nVá aos poucos e respeite os limites do seu corpo!",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: kPrimaryColor,
+                            fontSize: 25,
+                          ),
+                        ),
+                        Text(
+                          "\nA dor pode aconder durante a atividade, mas não deve se manter nem aumentar após sua conclusão. \n\nAo se sentir seguro progrida aos poucos, até ganhar confiança para fazer o movimento livremente em toda a sua amplitude.",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            color: kTextColor,
+                            fontSize: 20,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        DefaultButton(
+                          text: "Concluir capítulo",
+                          press: () => Navigator.of(context).pop()
+                        ),
+                        SizedBox(height: 20),
+                      ],
                     ),
+                  )
+                )
+              ],
             ),
-            onTap: () {
-              setState(() {
-                controller.changedMedication(value);
-                aux = controller.medication;
-                print(controller.medication);
-              });
-            },
-          ),
-          Container(
-            margin: EdgeInsets.only(
-                left: mediaSize.width * 0.03, top: mediaSize.height * 0.007),
-            child: Text(label,
-                style: TextStyle(
-                  fontSize: mediaSize.width * 0.05,
-                  color: Color(0xff36a9b0),
-                )),
-          )
-        ],
-      ),
+        )
     );
   }
 }
